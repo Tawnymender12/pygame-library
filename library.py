@@ -153,7 +153,7 @@ def write(font_path: str, font_size, text: str, antialias: bool, color: str, sur
     rendered_text_rect = rendered_text.get_rect(center = (pos))
     surface.blit(rendered_text, rendered_text_rect)
 
-def button(button_img, posX, posY, surface, func, button_clicked_img=None, click_sound=None):
+def button(button_img, posX, posY, surface, button_bool, button_clicked_img=None, click_sound=None):
     button_img_rect = button_img.get_rect(center = (posX, posY))
     surface.blit(button_img, button_img_rect)
 
@@ -162,4 +162,6 @@ def button(button_img, posX, posY, surface, func, button_clicked_img=None, click
         if pygame.mouse.get_pressed()[0]:
             if button_clicked_img is not None: surface.blit(button_clicked_img, button_img_rect)
             if click_sound is not None: click_sound.play()
-            func()
+            button_bool = True
+    
+    return button_bool
